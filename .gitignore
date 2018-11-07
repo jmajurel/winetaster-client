@@ -22,3 +22,4 @@ yarn-error.log*
 
 #custom
 .env
+package-lock.json

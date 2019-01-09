@@ -24,7 +24,7 @@ class WineDetailPage extends Component {
 
   render() {
     const { selectedWine, currentUser } = this.props;
-    const { image, name, description, type, price, age, alcohol, domaine, owners } = selectedWine; 
+    const { image, name, description, type, price, age, alcohol, domaine, owner } = selectedWine; 
 
     return (
       <div className='wine-card'>
@@ -52,19 +52,19 @@ class WineDetailPage extends Component {
 	  </div>
 
 	  <div className='owners'>
-	    <h4>Owners</h4>
+	    <h4>Owner</h4>
 	    <ul className='owners-list'>
-	      { owners && ( owners.map(owner => (
-		<Link className='owners-item' to={`/users/${owner._id}`} key={owner._id}>
-		  <img src={owner.profileImageUrl || defaultImageProfile } alt={owner.username} />
-		</Link>)))
-	      }
+	    { owner && (
+	      <Link className='owners-item' to={`/users/${owner._id}`} key={owner._id}>
+		<img src={owner.profileImageUrl || defaultImageProfile } alt={owner.username} />
+	      </Link>
+	    )}
 	    </ul>
 	  </div>
 	  <div className='options'>
-	    { owners && 
+	    { owner && 
 	      currentUser && 
-	      owners.find(owner => owner._id === currentUser.id) && 
+	      ( owner._id === currentUser.id) && 
 	      (
 	       <form onSubmit={this.handleSubmit}>
 	         <Link 
